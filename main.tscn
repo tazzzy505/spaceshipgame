@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dtc2bsxpg1yhs"]
+
+[ext_resource type="Script" uid="uid://wuyk2dj7e884" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ypwm7pb8wv0d" path="res://ship.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cg5ul2r5d7eql" path="res://ship.gd" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://bydasixoflnu" path="res://enemy.tscn" id="3_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dicsqkq6ahn0w" path="res://reticle3d.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://djqe2crug6v5d" path="res://lazer.tscn" id="5_lquwl"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lquwl"]
+
+[node name="Main" type="Node3D" unique_id=199009412]
+script = ExtResource("1_h2yge")
+lazerScene = ExtResource("5_lquwl")
+enemyScene = ExtResource("3_7mycd")
+
+[node name="ReticlePoint" type="Node3D" parent="." unique_id=360473319]
+script = ExtResource("2_1bvp3")
+
+[node name="Ship" parent="." unique_id=9422585 instance=ExtResource("1_ig7tw")]
+
+[node name="Reticle3d" parent="." unique_id=82392428 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0929751)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Reticle3d" unique_id=1286496695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5611076)
+
+[node name="Camera3D" type="Camera3D" parent="Reticle3d/SpringArm3D" unique_id=1722038390]
+
+[node name="Lazer" parent="." unique_id=1369480122 instance=ExtResource("5_lquwl")]
+visible = false
+lazerSpeed = 1
+
+[node name="LazerCooldown" type="Timer" parent="." unique_id=1656069983]
+wait_time = 0.1
+autostart = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1861500320]
+light_energy = 7.211
+
+[node name="SpawnerArea" type="MeshInstance3D" parent="." unique_id=796286835]
+transform = Transform3D(10, 0, 0, 0, -4.371139e-07, -10, 0, 10, -4.371139e-07, 0, 0, -30)
+visible = false
+mesh = SubResource("PlaneMesh_lquwl")
+
+[node name="EnemySpawnTimer" type="Timer" parent="." unique_id=820362951]
+autostart = true
+
+[connection signal="timeout" from="LazerCooldown" to="." method="_on_lazer_cooldown_timeout"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

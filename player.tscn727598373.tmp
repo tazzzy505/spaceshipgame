@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ypwm7pb8wv0d"]
+
+[ext_resource type="Script" uid="uid://dicxoiug7y0hl" path="res://player.gd" id="1_4flbx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sh265"]
+size = Vector3(1, 0.2763672, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4flbx"]
+size = Vector3(1, 0.2, 1)
+
+[node name="Player" type="CharacterBody3D" unique_id=1031926698]
+script = ExtResource("1_4flbx")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=208626384]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot" unique_id=1861521520]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013183594, 0)
+shape = SubResource("BoxShape3D_sh265")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1590404366]
+mesh = SubResource("BoxMesh_4flbx")

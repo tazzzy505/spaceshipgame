@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ypwm7pb8wv0d"]
+
+[ext_resource type="Script" uid="uid://cg5ul2r5d7eql" path="res://ship.gd" id="1_4flbx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4flbx"]
+size = Vector3(1, 0.22772217, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l3rv8"]
+size = Vector3(0.45, 0.2, 1)
+
+[node name="Ship" type="Node3D" unique_id=9422585]
+script = ExtResource("1_4flbx")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=475001122]
+
+[node name="MeshInstance3D" type="RigidBody3D" parent="." unique_id=1015522259]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D" unique_id=439627554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.009307861, 0)
+shape = SubResource("BoxShape3D_4flbx")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1794954998]
+mesh = SubResource("BoxMesh_l3rv8")

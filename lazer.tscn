@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://djqe2crug6v5d"]
+
+[ext_resource type="Script" uid="uid://ddoe4ht3va7ag" path="res://lazer.gd" id="1_avoeb"]
+[ext_resource type="Script" uid="uid://c3o4olk2022xn" path="res://lazerBody.gd" id="2_pxg10"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_avoeb"]
+albedo_color = Color(0.7281006, 0.72810054, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jhyuc"]
+material = SubResource("StandardMaterial3D_avoeb")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_avoeb"]
+size = Vector3(3.4614868, 1.7162476, 1)
+
+[node name="Lazer" type="Node3D" unique_id=1369480122]
+transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.506, 0, 0, 0)
+script = ExtResource("1_avoeb")
+lazerSpeed = 100
+
+[node name="Pivot" type="Node3D" parent="." unique_id=45410249]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="LazerMesh1" type="MeshInstance3D" parent="Pivot" unique_id=873479562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+mesh = SubResource("CapsuleMesh_jhyuc")
+
+[node name="LazerMesh2" type="MeshInstance3D" parent="Pivot" unique_id=1997581148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("CapsuleMesh_jhyuc")
+
+[node name="LazerTimeout" type="Timer" parent="Pivot" unique_id=1690538262]
+wait_time = 2.5
+autostart = true
+
+[node name="Body" type="RigidBody3D" parent="Pivot" unique_id=1507694686]
+transform = Transform3D(1, 0, 0, 0, 1, -7.1054274e-15, 0, 0, 1, 0, 0, 0)
+collision_layer = 6
+script = ExtResource("2_pxg10")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Body" unique_id=335484377 groups=["lazer"]]
+transform = Transform3D(1, 0, 0, 0, 1, -8.7041485e-13, 0, 0, 1, -0.09097284, 0.08804325, -8.881784e-16)
+shape = SubResource("BoxShape3D_avoeb")
+
+[connection signal="timeout" from="Pivot/LazerTimeout" to="." method="_on_timer_timeout"]

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dtc2bsxpg1yhs"]
+
+[ext_resource type="Script" uid="uid://wuyk2dj7e884" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ypwm7pb8wv0d" path="res://ship.tscn" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://cg5ul2r5d7eql" path="res://ship.gd" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dicsqkq6ahn0w" path="res://reticle3d.tscn" id="4_1bvp3"]
+
+[node name="Main" type="Node3D" unique_id=199009412]
+script = ExtResource("1_h2yge")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1722038390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1326432)
+
+[node name="ReticlePoint" type="Node3D" parent="." unique_id=360473319]
+script = ExtResource("2_1bvp3")
+
+[node name="Ship" parent="." unique_id=9422585 instance=ExtResource("1_ig7tw")]
+
+[node name="Reticle3d" parent="." unique_id=82392428 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0929751)

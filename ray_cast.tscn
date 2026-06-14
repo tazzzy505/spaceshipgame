@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://1pjj37knyo4a"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o6ley"]
+orientation = 2
+
+[node name="RayCast" type="Node3D" unique_id=96226439]
+
+[node name="RayCastPlane" type="MeshInstance3D" parent="." unique_id=1184612704]
+mesh = SubResource("PlaneMesh_o6ley")

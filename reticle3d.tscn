@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dicsqkq6ahn0w"]
+
+[ext_resource type="Script" uid="uid://c3le0u4ki8wj4" path="res://reticle3d.gd" id="1_0ppgy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ppgy"]
+albedo_color = Color(0.63144875, 0.42663747, 0.2183131, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_r2she"]
+material = SubResource("StandardMaterial3D_0ppgy")
+
+[node name="Reticle3d" type="CharacterBody3D" unique_id=82392428]
+script = ExtResource("1_0ppgy")
+
+[node name="ReticlePoint" type="MeshInstance3D" parent="." unique_id=1648299826]
+mesh = SubResource("SphereMesh_r2she")

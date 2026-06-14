@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dtc2bsxpg1yhs"]
+
+[ext_resource type="PackedScene" uid="uid://ypwm7pb8wv0d" path="res://player.tscn" id="1_ig7tw"]
+
+[node name="Main" type="Node3D" unique_id=199009412]
+
+[node name="Player" parent="." unique_id=905140866 instance=ExtResource("1_ig7tw")]
+speed = null
+fall_acceleration = null
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1722038390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1326432)
