@@ -1,0 +1,12 @@
+SpringArm3D
+MeshInstance3D
+RigidBody3D
+CollisionShape3D
+Timer
+OmniLight3D
+Node3D
+CharacterBody3D
+Control
+CanvasLayer
+ColorRect
+Camera3D
