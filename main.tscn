@@ -6,8 +6,33 @@
 [ext_resource type="PackedScene" uid="uid://bydasixoflnu" path="res://enemy.tscn" id="3_7mycd"]
 [ext_resource type="PackedScene" uid="uid://dicsqkq6ahn0w" path="res://reticle3d.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://djqe2crug6v5d" path="res://lazer.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://32bj32t3jdxg" path="res://camera_3d.gd" id="6_272bh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lquwl"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_272bh"]
+sky_top_color = Color(0.040813617, 0.7185623, 0.99999994, 1)
+sky_horizon_color = Color(0.41909182, 0.6434204, 0.803086, 1)
+sky_curve = 0.19792576
+
+[sub_resource type="Sky" id="Sky_272bh"]
+sky_material = SubResource("ProceduralSkyMaterial_272bh")
+
+[sub_resource type="Environment" id="Environment_272bh"]
+background_mode = 2
+background_energy_multiplier = 1.2
+sky = SubResource("Sky_272bh")
+ambient_light_color = Color(0.19528618, 0.5073843, 0.5188443, 1)
+ambient_light_energy = 2.44
+reflected_light_source = 2
+glow_intensity = 1.55
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_272bh"]
+
+[sub_resource type="Compositor" id="Compositor_5vw27"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_272bh"]
 
 [node name="Main" type="Node3D" unique_id=199009412]
 script = ExtResource("1_h2yge")
@@ -17,15 +42,8 @@ enemyScene = ExtResource("3_7mycd")
 [node name="ReticlePoint" type="Node3D" parent="." unique_id=360473319]
 script = ExtResource("2_1bvp3")
 
-[node name="Ship" parent="." unique_id=9422585 instance=ExtResource("1_ig7tw")]
-
 [node name="Reticle3d" parent="." unique_id=82392428 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0929751)
-
-[node name="SpringArm3D" type="SpringArm3D" parent="Reticle3d" unique_id=1286496695]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5611076)
-
-[node name="Camera3D" type="Camera3D" parent="Reticle3d/SpringArm3D" unique_id=1722038390]
 
 [node name="Lazer" parent="." unique_id=1369480122 instance=ExtResource("5_lquwl")]
 visible = false
@@ -40,11 +58,29 @@ light_energy = 7.211
 
 [node name="SpawnerArea" type="MeshInstance3D" parent="." unique_id=796286835]
 transform = Transform3D(10, 0, 0, 0, -4.371139e-07, -10, 0, 10, -4.371139e-07, 0, 0, -30)
-visible = false
 mesh = SubResource("PlaneMesh_lquwl")
 
 [node name="EnemySpawnTimer" type="Timer" parent="." unique_id=820362951]
 autostart = true
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1286496695]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.0929751)
+spring_length = 8.0
+
+[node name="Ship" parent="." unique_id=9422585 instance=ExtResource("1_ig7tw")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1813693430]
+environment = SubResource("Environment_272bh")
+camera_attributes = SubResource("CameraAttributesPractical_272bh")
+compositor = SubResource("Compositor_5vw27")
+
+[node name="test" type="MeshInstance3D" parent="." unique_id=1876194010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9625224, 1.2781196)
+mesh = SubResource("BoxMesh_272bh")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1722038390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.825064)
+script = ExtResource("6_272bh")
 
 [connection signal="timeout" from="LazerCooldown" to="." method="_on_lazer_cooldown_timeout"]
 [connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

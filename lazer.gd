@@ -9,9 +9,7 @@ var body
 func _ready() -> void:
 	body = $Pivot/Body
 	body.set_contact_monitor(true)
-	if body.is_contact_monitor_enabled():
-		print("IS ENABLED")
-	pass
+	add_to_group("lazer")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,4 +28,10 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
+	queue_free()
+
+
+
+
+func _on_body_body_entered(body: Node) -> void:
 	queue_free()

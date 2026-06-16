@@ -15,12 +15,18 @@ var enemyInstance
 var spawnerArea: MeshInstance3D
 var spawnRangeMax: int = 10
 var spawnRangeMin: int = 0
+var shoot_cooldown: float = 0.1
+var camera: Camera3D
+var test
+@export var cameraPullThreshold: int = 20
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ship = $Ship
 	reticlePoint3D = $Reticle3d
 	spawnerArea = $SpawnerArea
+	camera = $Camera3D
+	test = $test
 	
 func spawnEnemy():
 	enemyInstance = enemyScene
@@ -43,7 +49,6 @@ func shoot():
 	#var lazerInstanceLocation = get_node("Ship")
 	lazerInstance.position = ship.position
 	lazerInstance.rotation =  ship.rotation
-	print("shoot")
 	add_child(lazerInstance)
 	
 
@@ -55,11 +60,20 @@ func _process(delta: float) -> void:
 	ship.position.y = lerp(ship.position.y, reticlePoint3D.position.y,smoothstep(0.01,1,0.075))
 	ship.position.x = lerp(ship.position.x, reticlePoint3D.position.x,smoothstep(0.01,1,0.075))
 	
-	
+	if camera.position.x >= ship.position.x + cameraPullThreshold || camera.position.x >= ship.position.x - cameraPullThreshold:
+		camera.position.x = lerp(camera.position.x, ship.position.x,smoothstep(0.01,1,0.075))
+		
+	if camera.position.y >= ship.position.y + cameraPullThreshold || camera.position.y >= ship.position.y - cameraPullThreshold:
+		camera.position.y = lerp(camera.position.y, ship.position.y,smoothstep(0.01,1,0.075))
+		
+		
 	ship.look_at(lerp(reticlePoint3D.position, ship.position,0.75), Vector3.UP, true)
 
-	shooting = Input.is_action_just_pressed("shoot")
-	_on_lazer_cooldown_timeout()
+	shooting = Input.is_action_pressed("shoot")
+	shoot_cooldown = shoot_cooldown - delta
+	while shoot_cooldown <= 0 and shooting:
+		shoot_cooldown = 0.1
+		shoot()
 	pass
 	#raycastPlanePos = raycastPlane.position
 	#reticlePos = reticle.position
@@ -68,12 +82,6 @@ func _process(delta: float) -> void:
 	
 
 
-func _on_lazer_cooldown_timeout() -> void:
-	if shooting:
-		shoot()
-	
-
-
 func _on_enemy_spawn_timer_timeout() -> void:
 	spawnEnemy()
-	print("EnemySpawned")
+	

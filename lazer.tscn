@@ -10,9 +10,9 @@ albedo_color = Color(0.7281006, 0.72810054, 0, 1)
 material = SubResource("StandardMaterial3D_avoeb")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_avoeb"]
-size = Vector3(3.4614868, 1.7162476, 1)
+size = Vector3(3.4614868, 1.7162476, 1.7993164)
 
-[node name="Lazer" type="Node3D" unique_id=1369480122]
+[node name="Lazer" type="Node3D" unique_id=1369480122 groups=["lazer"]]
 transform = Transform3D(0.19, 0, 0, 0, 0.19, 0, 0, 0, 0.506, 0, 0, 0)
 script = ExtResource("1_avoeb")
 lazerSpeed = 100
@@ -32,13 +32,17 @@ mesh = SubResource("CapsuleMesh_jhyuc")
 wait_time = 2.5
 autostart = true
 
-[node name="Body" type="RigidBody3D" parent="Pivot" unique_id=1507694686]
-transform = Transform3D(1, 0, 0, 0, 1, -7.1054274e-15, 0, 0, 1, 0, 0, 0)
-collision_layer = 6
+[node name="Body" type="RigidBody3D" parent="Pivot" unique_id=1507694686 groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1.2688185, -2.842171e-14, 0, -7.1054274e-15, 1.2727923, 0, 0.064354174, -2.8130094e-09)
+collision_layer = 2
+collision_mask = 12
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("2_pxg10")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/Body" unique_id=335484377 groups=["lazer"]]
-transform = Transform3D(1, 0, 0, 0, 1, -8.7041485e-13, 0, 0, 1, -0.09097284, 0.08804325, -8.881784e-16)
+transform = Transform3D(1, 0, 0, 0, 1, -1.7053026e-12, 0, 0, 1, -0.09097284, 0.08804325, -0.3996582)
 shape = SubResource("BoxShape3D_avoeb")
 
 [connection signal="timeout" from="Pivot/LazerTimeout" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Pivot/Body" to="." method="_on_body_body_entered"]

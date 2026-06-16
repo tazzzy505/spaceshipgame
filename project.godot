@@ -27,6 +27,7 @@ version_control/autoload_on_startup=true
 [global_group]
 
 enemy=""
+lazer=""
 
 [input]
 
@@ -60,6 +61,8 @@ shoot={
 
 3d_physics/layer_1="player"
 3d_physics/layer_2="lazer"
+3d_physics/layer_3="enemy"
+3d_physics/layer_4="ground"
 
 [physics]
 

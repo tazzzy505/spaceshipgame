@@ -1,5 +1,6 @@
 SpringArm3D
 MeshInstance3D
+WorldEnvironment
 RigidBody3D
 CollisionShape3D
 Timer
