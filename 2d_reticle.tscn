@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://by7f6iilg6tdo"]
+
+[sub_resource type="Shader" id="Shader_mlacu"]
+code = "shader_type canvas_item;
+
+// This automatically grabs what was rendered BEHIND this node
+uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+
+void fragment() {
+    // 1. Get the color of the BaseLayer from the screen texture
+    vec4 base_color = texture(screen_texture, SCREEN_UV);
+    
+    // 2. Get the alpha (transparency) of your current Cutter node/material
+    vec4 cutter_color = texture(TEXTURE, UV);
+    
+    // 3. Subtract the cutter's alpha from the base layer
+    // This makes the base layer transparent wherever the cutter is visible
+    COLOR = vec4(base_color.rgb, base_color.a - cutter_color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k1xcu"]
+shader = SubResource("Shader_mlacu")
+
+[node name="Control" type="ColorRect" unique_id=1475510816]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=1082710877]
+
+[node name="Cutter" type="ColorRect" parent="BackBufferCopy" unique_id=692992807]
+material = SubResource("ShaderMaterial_k1xcu")
+offset_right = 1029.0
+offset_bottom = 573.0

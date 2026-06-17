@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b62xqiixb23wh"]
+
+[ext_resource type="PackedScene" uid="uid://by7f6iilg6tdo" path="res://2d_reticle.tscn" id="1_t2nh1"]
+
+[node name="SubViewportContainer" type="SubViewport" unique_id=958410400]
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1692151727]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Control" parent="." unique_id=1475510816 instance=ExtResource("1_t2nh1")]

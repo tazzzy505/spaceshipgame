@@ -1,14 +1,19 @@
 extends Node3D
 
-
+var cooldown = 1
 
 
 func _ready() -> void:
+	
+	pass
+	
+func _process(delta: float) -> void:
+	
 	pass
 	
 func _physics_process(delta: float) -> void:
 	pass
-	#self.postition = Vector3.ZERO
+
 	
 	
 

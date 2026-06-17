@@ -2,3 +2,9 @@ res://main.tscn
 res://main.gd
 res://camera_3d.gd
 res://ship.tscn
+res://ship.gd
+res://2d_reticle.tscn
+res://2d_reticle.gdshader
+res://lazer.tscn
+res://sub_viewport_container.tscn
+res://reticle3d.tscn
