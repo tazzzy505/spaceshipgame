@@ -1,28 +1,27 @@
 [gd_scene format=3 uid="uid://bydasixoflnu"]
 
 [ext_resource type="Script" uid="uid://crdbdrcv27j4l" path="res://enemy.gd" id="1_7k104"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7xaro"]
-albedo_color = Color(0.7019608, 0.0627451, 0, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_7k104"]
-material = SubResource("StandardMaterial3D_7xaro")
+[ext_resource type="PackedScene" uid="uid://dxpysngb8uegx" path="res://Enemies/Enemy_02.glb" id="2_4gyqm"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7k104"]
+size = Vector3(1, 0.67181396, 0.57055664)
 
 [node name="Enemy" type="Node3D" unique_id=1459643640 groups=["enemy"]]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 script = ExtResource("1_7k104")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=852578885]
-mesh = SubResource("PrismMesh_7k104")
+[node name="Enemy_02" parent="." unique_id=483061071 instance=ExtResource("2_4gyqm")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="MeshInstance3D" unique_id=529302577 groups=["enemy"]]
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=529302577 groups=["enemy"]]
+transform = Transform3D(3.333333, 0, -3.5527137e-15, 0, 3.333333, 0, 3.5527137e-15, 0, 3.333333, 0, 0, 0)
 collision_layer = 4
 collision_mask = 3
 contact_monitor = true
 max_contacts_reported = 1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/RigidBody3D" unique_id=880252271]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=880252271]
+transform = Transform3D(1, 0, 2.6645353e-15, 0, 1, 0, -2.6645353e-15, 0, 1, -3.330669e-16, 0.044830326, -0.084350586)
 shape = SubResource("BoxShape3D_7k104")
 
-[connection signal="body_entered" from="MeshInstance3D/RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]
+[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

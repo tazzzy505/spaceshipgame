@@ -12,5 +12,4 @@ material = SubResource("StandardMaterial3D_0ppgy")
 script = ExtResource("1_0ppgy")
 
 [node name="ReticlePoint" type="MeshInstance3D" parent="." unique_id=1648299826]
-visible = false
 mesh = SubResource("SphereMesh_r2she")
