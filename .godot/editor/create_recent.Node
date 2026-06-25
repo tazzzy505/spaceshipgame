@@ -1,6 +1,9 @@
+Node3D
+Node
+Timer
+ColorRect
 SubViewport
 MeshInstance3D
-ColorRect
 BackBufferCopy
 SubViewportContainer
 Node2D
@@ -9,6 +12,3 @@ TextureRect
 SpringArm3D
 WorldEnvironment
 RigidBody3D
-CollisionShape3D
-Timer
-OmniLight3D

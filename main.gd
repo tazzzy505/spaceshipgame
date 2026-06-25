@@ -25,10 +25,10 @@ var rollSpeed = 100
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	ship = $Ship
-	reticlePoint3D = $Reticle3d
-	spawnerArea = $SpawnerArea
-	camera = $Camera3D
+	ship = $Mover/Ship
+	reticlePoint3D = $Mover/Reticle3d
+	spawnerArea = $Mover/SpawnerArea
+	camera = $Mover/Camera3D
 	test = $test
 	
 func spawnEnemy():

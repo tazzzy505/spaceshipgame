@@ -8,7 +8,7 @@ var totalTime: float = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var body = $MeshInstance3D/RigidBody3D
+	var body = $RigidBody3D
 	body.set_contact_monitor(true)
 	amplitude = randf() * 10
 
