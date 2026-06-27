@@ -1,0 +1,9 @@
+res://explosion.tscn
+res://enemy.tscn
+res://enemy.gd
+res://main.tscn
+res://enemy_lazer.tscn
+res://enemy_02.tscn
+res://enemy_lazer.gd
+res://ship.gd
+res://ship.tscn

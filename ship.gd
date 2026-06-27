@@ -33,3 +33,11 @@ func _physics_process(delta: float) -> void:
 		#velocity.y = move_toward(velocity.y, 0, SPEED)
 #
 	#move_and_slide()
+
+
+func _on_mesh_instance_3d_body_entered(body: Node) -> void:
+	print("RandomCollision")
+	if body.is_in_group("enemyLazer"):
+		print("YA DED")
+		queue_free()
+	pass # Replace with function body.

@@ -22,7 +22,8 @@ var test
 var targetRoll
 var maxRollDegrees = 40
 var rollSpeed = 100
-
+@export var explosionScene: PackedScene
+var explosionInstance
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	ship = $Mover/Ship
@@ -45,6 +46,7 @@ func spawnEnemy():
 	var global_spawn_position: Vector3 = mesh_global_transform * local_point
 	add_child(enemy)
 	enemy.global_position = global_spawn_position
+	enemy.destroyed.connect(onEnemyDestroyed)
 	
 	
 func shoot():
@@ -54,7 +56,13 @@ func shoot():
 	lazerInstance.rotation =  ship.rotation
 	add_child(lazerInstance)
 	
-
+func onEnemyDestroyed(enemyPosition: Vector3):
+	explosionInstance = explosionScene
+	var explosion = explosionInstance.instantiate()
+	var explosionPosition = enemyPosition
+	add_child(explosion)
+	explosion.global_position = explosionPosition
+	
 	
 	
 
