@@ -32,10 +32,10 @@ mesh = SubResource("CapsuleMesh_jhyuc")
 wait_time = 2.5
 autostart = true
 
-[node name="Body" type="RigidBody3D" parent="Pivot" unique_id=1507694686 groups=["enemy"]]
+[node name="Body" type="RigidBody3D" parent="Pivot" unique_id=1507694686 groups=["lazer"]]
 transform = Transform3D(1, 0, 0, 0, 1.2688185, -2.842171e-14, 0, -7.1054274e-15, 1.2727923, 0, 0.064354174, -2.8130094e-09)
 collision_layer = 2
-collision_mask = 12
+collision_mask = 44
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("2_pxg10")

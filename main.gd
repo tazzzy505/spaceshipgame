@@ -68,19 +68,20 @@ func onEnemyDestroyed(enemyPosition: Vector3):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	ship.position.y = lerp(ship.position.y, reticlePoint3D.position.y,smoothstep(0.01,1,0.075))
-	ship.position.x = lerp(ship.position.x, reticlePoint3D.position.x,smoothstep(0.01,1,0.075))
+	if ship:
+		ship.position.y = lerp(ship.position.y, reticlePoint3D.position.y,smoothstep(0.01,1,0.075))
+		ship.position.x = lerp(ship.position.x, reticlePoint3D.position.x,smoothstep(0.01,1,0.075))
 	
 	
 
-	if camera.position.x >= ship.position.x + cameraPullThreshold || camera.position.x >= ship.position.x - cameraPullThreshold:
-		camera.position.x = lerp(camera.position.x, ship.position.x,smoothstep(0.01,1,0.075))
+		if camera.position.x >= ship.position.x + cameraPullThreshold || camera.position.x >= ship.position.x - cameraPullThreshold:
+			camera.position.x = lerp(camera.position.x, ship.position.x,smoothstep(0.01,1,0.075))
 		
-	if camera.position.y >= ship.position.y + cameraPullThreshold || camera.position.y >= ship.position.y - cameraPullThreshold:
-		camera.position.y = lerp(camera.position.y, ship.position.y,smoothstep(0.01,1,0.075))
+		if camera.position.y >= ship.position.y + cameraPullThreshold || camera.position.y >= ship.position.y - cameraPullThreshold:
+			camera.position.y = lerp(camera.position.y, ship.position.y,smoothstep(0.01,1,0.075))
 		
 		
-	ship.look_at(lerp(reticlePoint3D.position, ship.position,0.75), Vector3.UP, true)
+		ship.look_at(lerp(reticlePoint3D.position, ship.position,0.75), Vector3.UP, true)
 	
 	
 	#if reticlePoint3D.position > ship.position-1:
@@ -92,18 +93,18 @@ func _process(delta: float) -> void:
 	
 	# 1. Calculate the horizontal distance/input direction
 	# This measures how far away the reticle is on the X axis
-	var horizontal_displacement = reticlePoint3D.global_position.x - ship.global_position.x
+		var horizontal_displacement = reticlePoint3D.global_position.x - ship.global_position.x
 	
 	# 2. Clamp the value so the ship doesn't flip upside down if the reticle is too far
 	# This creates a value between -1.0 (hard left) and 1.0 (hard right)
-	var rollFactor = clamp(horizontal_displacement, -1.0, 1.0)
+		var rollFactor = clamp(horizontal_displacement, -1.0, 1.0)
 	
 	# 3. Calculate the target roll in radians
 	# Inverting the roll_factor might be needed depending on your camera/axis setup
-	var targetRoll = rollFactor * deg_to_rad(maxRollDegrees)
+		var targetRoll = rollFactor * deg_to_rad(maxRollDegrees)
 	
 	# 4. Smoothly interpolate to the target roll using delta
-	ship.rotation.z = lerp(ship.rotation.z, targetRoll, rollSpeed * delta)
+		ship.rotation.z = lerp(ship.rotation.z, targetRoll, rollSpeed * delta)
 		
 		
 		

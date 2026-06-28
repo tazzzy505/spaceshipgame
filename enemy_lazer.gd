@@ -35,3 +35,8 @@ func _on_timer_timeout() -> void:
 
 func _on_body_body_entered(body: Node) -> void:
 	queue_free()
+
+
+func _on_rigid_body_3d_body_entered(body: Node) -> void:
+	print("hit")
+	pass # Replace with function body.

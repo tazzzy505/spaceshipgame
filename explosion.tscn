@@ -16,11 +16,12 @@ curve = SubResource("Curve_m5xho")
 gradient = SubResource("Gradient_vxas0")
 
 [sub_resource type="Gradient" id="Gradient_q7epf"]
-offsets = PackedFloat32Array(0, 0.2125, 0.4625, 0.9411765, 1)
+offsets = PackedFloat32Array(0, 0.38539553, 0.6774848, 0.86409736, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.91421294, 0.78317165, 0, 1, 0.7579822, 0.3864134, 0.13078853, 1, 0.17260516, 0.07823763, 0.01693703, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_vxas0"]
 gradient = SubResource("Gradient_q7epf")
+use_hdr = true
 
 [sub_resource type="Curve" id="Curve_vxas0"]
 _limits = [0.0, 10.0, 0.0, 1.0]
@@ -85,8 +86,10 @@ outer_radius = 2.236
 script = ExtResource("1_vxas0")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=329917019]
+emitting = false
 amount = 1
 lifetime = 0.6
+one_shot = true
 speed_scale = 0.5
 process_material = SubResource("ParticleProcessMaterial_q7epf")
 draw_passes = 4

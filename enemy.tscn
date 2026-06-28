@@ -78,8 +78,8 @@ shadow_mesh = SubResource("ArrayMesh_rboki")
 transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 0, 0, 0)
 script = ExtResource("1_7k104")
 enemyLazer = ExtResource("2_qi2p4")
-flash_duration = 0.1
 attackChance = 0.5
+range = 300
 
 [node name="Enemy_02" parent="." unique_id=483061071 instance=ExtResource("2_4gyqm")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
@@ -88,7 +88,7 @@ visible = false
 [node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=529302577 groups=["enemy"]]
 transform = Transform3D(3.333333, 0, -3.5527137e-15, 0, 3.333333, 0, 3.5527137e-15, 0, 3.333333, 0, 0, 0)
 collision_layer = 4
-collision_mask = 3
+collision_mask = 19
 contact_monitor = true
 max_contacts_reported = 1
 

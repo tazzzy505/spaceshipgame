@@ -15,6 +15,10 @@ run/main_scene="uid://dtc2bsxpg1yhs"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Eventbus="*uid://dvieg00ksg6me"
+
 [dotnet]
 
 project/assembly_name="Spaceshipgame"
@@ -29,6 +33,7 @@ version_control/autoload_on_startup=true
 enemy=""
 lazer=""
 enemyLazer=""
+eraser=""
 
 [input]
 
@@ -64,6 +69,7 @@ shoot={
 3d_physics/layer_2="lazer"
 3d_physics/layer_3="enemy"
 3d_physics/layer_4="ground"
+3d_physics/layer_6="enemyLazer"
 
 [physics]
 

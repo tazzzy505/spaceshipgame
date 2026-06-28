@@ -18,20 +18,25 @@ radial_segments = 6
 rings = 3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4w1y1"]
-size = Vector3(0.8725586, 2.6851807, 1.0258789)
+size = Vector3(1.0202637, 2.8015747, 1.0258789)
 
-[node name="EnemyLazer" type="Node3D" unique_id=371878001]
-transform = Transform3D(-2.1855694e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.1855694e-08, 0, 0, 0)
+[node name="EnemyLazer" type="Node3D" unique_id=371878001 groups=["enemyLazer"]]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_hdmgc")
 lazerSpeed = 50
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=398400433]
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=398400433 groups=["enemyLazer"]]
+collision_layer = 0
+collision_mask = 9
 contact_monitor = true
+max_contacts_reported = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1297725228 groups=["enemyLazer"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0, 0, 0)
 mesh = SubResource("CylinderMesh_ax60i")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D/MeshInstance3D" unique_id=1943526014]
-transform = Transform3D(1, 0, 0, 0, 1, -8.351872e-23, 0, -8.351872e-23, 1, -0.0637207, -0.12335205, 0.012939454)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1943526014 groups=["enemyLazer"]]
+transform = Transform3D(0.5, 0, 0, 0, -2.1855694e-08, -0.5, 0, 0.5, -2.1855694e-08, 0.005065917, -0.0064697256, -0.032577515)
 shape = SubResource("BoxShape3D_4w1y1")
+
+[connection signal="body_entered" from="RigidBody3D" to="." method="_on_rigid_body_3d_body_entered"]

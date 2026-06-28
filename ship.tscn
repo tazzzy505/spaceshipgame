@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://deuslnyl30ykn" path="res://spaceship_Textures_001_Solo.glb" id="2_4cq66"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4flbx"]
-size = Vector3(1, 0.22772217, 1)
+size = Vector3(0.0647583, 0.024044037, 0.058502197)
 
 [node name="Ship" type="Node3D" unique_id=9422585]
 script = ExtResource("1_4flbx")
@@ -16,6 +16,10 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 transform = Transform3D(0.055, 0, 0, 0, 0.055, 0, 0, 0, 0.055, 0, 0, 0)
 
 [node name="MeshInstance3D" type="RigidBody3D" parent="Pivot" unique_id=1015522259]
+transform = Transform3D(18.181818, 0, -2.2737368e-13, 0, 18.181818, 0, 2.2737368e-13, 0, 18.181818, 0, 0, 0)
+collision_mask = 60
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Pivot/MeshInstance3D" unique_id=439627554]
 shape = SubResource("BoxShape3D_4flbx")
